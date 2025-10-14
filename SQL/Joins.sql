@@ -54,3 +54,46 @@ from Products p
 right join Customer c 
 on c.CustomerID = p.CustomerID
 order by p.CustomerID;
+
+-- 3.Leftouter Join
+select c.CustomerID,c.CustomerName,c.Email,c.City,c.Country
+from Customers c
+left outer join Products p
+on p.CustomerID = c.CustomerID
+order by c.CustomerID;
+
+-- 4.Rightouter Join
+select p.CustomerID,p.ProductID,p.ProductName,p.Category,p.Price
+from Products p
+right outer join Customers c 
+on c.CustomerID = p.CustomerID
+order by p.CustomerID;
+
+-- 5.Inner Join 
+select c.CustomerID, c.CustomerName, p.ProductID, p.ProductName
+from Customers c
+inner join Products p on c.CustomerID = p.CustomerID
+order by c.CustomerID;
+
+-- 6.Fullouter Join
+select c.CustomerID, c.CustomerName, p.ProductID, p.ProductName
+from Customers c
+full outer join Products p on c.CustomerID = p.CustomerID
+order by c.CustomerID;
+
+-- 7.Symmetric Difference
+SELECT 
+    c.CustomerID AS Customer_ID,
+    c.CustomerName,
+    c.Email,
+    c.City,
+    c.Country,
+    p.ProductID,
+    p.ProductName,
+    p.Category,
+    p.Price
+FROM Customers c
+FULL OUTER JOIN Products p
+ON c.CustomerID = p.CustomerID
+WHERE c.CustomerID IS NULL OR p.CustomerID IS NULL
+ORDER BY c.CustomerID;
